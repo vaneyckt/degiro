@@ -6,7 +6,7 @@ DeGiro's API is likely to change in the future and I make no guarantees that I'l
 
 ## How to use
 
-Install them gem with `gem install degiro`. Supported commands are shown below.
+Install the gem with `gem install degiro`. Supported commands are shown below.
 
 ```
 require 'degiro'
