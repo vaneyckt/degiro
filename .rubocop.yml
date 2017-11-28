@@ -1,0 +1,27 @@
+AllCops:
+  Exclude:
+    - bin/*
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/MethodLength:
+  Max: 30
+
+Metrics/AbcSize:
+  Enabled: false
+
+Naming/AccessorMethodName:
+  Enabled: false
+
+Style/Next:
+  Enabled: false
+
+Style/WordArray:
+  Enabled: false
+
+Style/NumericLiterals:
+  Enabled: false
+
+Documentation:
+  Enabled: false
