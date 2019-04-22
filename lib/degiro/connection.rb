@@ -37,7 +37,7 @@ module DeGiro
       raise MissingSessionIdError, 'Could not find valid session id' if @session_id == '' || @session_id.nil?
 
       @urls_map = UrlsMap.new(JSON.parse(@conn.get('/login/secure/config').body))
-      @user_data = UserData.new(JSON.parse(@conn.get("#{@urls_map['pa_url']}/client?sessionId=#{@session_id}").body))
+      @user_data = UserData.new(JSON.parse(@conn.get("#{@urls_map['pa_url']}/client?sessionId=#{@session_id}").body)["data"])
     end
   end
 end
