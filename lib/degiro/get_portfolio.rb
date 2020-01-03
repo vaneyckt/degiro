@@ -18,8 +18,7 @@ module DeGiro
         {
           size:       order['value'].find { |field| field['name'] == 'size' }['value'],
           value:      order['value'].find { |field| field['name'] == 'price' }['value'],
-          product_id: order['value'].find { |field| field['name'] == 'id' }['value'].to_s,
-          product:    order['value'].find { |field| field['name'] == 'product' }['value']
+          product_id: order['value'].find { |field| field['name'] == 'id' }['value'].to_s
         }
       end
       portfolio.select { |entry| entry[:size] > 0 }
