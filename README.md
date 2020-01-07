@@ -21,6 +21,8 @@ client.get_transactions
 id = client.find_products(search_text: 'GOOG').first[:id]
 client.find_product_by_id(id: id)
 
-client.create_buy_order(product_id: id, size: 10, price: 1000)
-client.create_sell_order(product_id: id, size: 10, price: 1000)
+client.create_market_buy_order(product_id: id, size: 10)
+client.create_market_sell_order(product_id: id, size: 10)
+client.create_limit_buy_order(product_id: id, size: 10, price: 1000)
+client.create_limit_sell_order(product_id: id, size: 10, price: 1000)
 ```
