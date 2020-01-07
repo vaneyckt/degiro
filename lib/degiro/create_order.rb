@@ -36,13 +36,13 @@ module DeGiro
 
     private
 
-     def market_order(type, product_id, size)
+    def market_order(type, product_id, size)
       {
         buySell:   type,
         orderType: ORDER_TYPES[:market],
         productId: product_id,
         size:      size,
-        timeType:  TIME_TYPES[:permanent],
+        timeType:  TIME_TYPES[:permanent]
       }
     end
 
