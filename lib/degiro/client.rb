@@ -13,7 +13,10 @@ module DeGiro
   class Client
     extend Forwardable
 
-    def_delegators :@create_order,       :create_buy_order, :create_sell_order
+    def_delegators :@create_order,       :create_market_buy_order
+    def_delegators :@create_order,       :create_market_sell_order
+    def_delegators :@create_order,       :create_limit_buy_order
+    def_delegators :@create_order,       :create_limit_sell_order
     def_delegators :@find_product_by_id, :find_product_by_id
     def_delegators :@find_products,      :find_products
     def_delegators :@get_cash_funds,     :get_cash_funds

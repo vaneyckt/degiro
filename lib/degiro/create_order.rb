@@ -2,31 +2,53 @@ require 'json'
 
 module DeGiro
   class CreateOrder
-    BUY_SELL    = { buy: 0, sell: 1 }.freeze
-    ORDER_TYPES = { limited: 0, stop_limited: 1, market_order: 2, stop_loss: 3 }.freeze
+    BUY_SELL    = { buy: 'BUY', sell: 'SELL' }.freeze
+    ORDER_TYPES = { limited: 0, stop_limited: 1, market: 2, stop_loss: 3 }.freeze
     TIME_TYPES  = { day: 1, permanent: 3 }.freeze
 
     def initialize(connection)
       @connection = connection
     end
 
-    def create_buy_order(product_id:, size:, price:)
-      order = order(BUY_SELL[:buy], product_id, size, price)
-      confirmation_id = JSON.parse(check_order(order).body)['confirmationId']
+    def create_market_buy_order(product_id:, size:)
+      order = market_order(BUY_SELL[:buy], product_id, size)
+      confirmation_id = JSON.parse(check_order(order).body)['data']['confirmationId']
       confirm_order(order, confirmation_id)
     end
 
-    def create_sell_order(product_id:, size:, price:)
-      order = order(BUY_SELL[:sell], product_id, size, price)
-      confirmation_id = JSON.parse(check_order(order).body)['confirmationId']
+    def create_market_sell_order(product_id:, size:)
+      order = market_order(BUY_SELL[:sell], product_id, size)
+      confirmation_id = JSON.parse(check_order(order).body)['data']['confirmationId']
+      confirm_order(order, confirmation_id)
+    end
+
+    def create_limit_buy_order(product_id:, size:, price:)
+      order = limit_order(BUY_SELL[:buy], product_id, size, price)
+      confirmation_id = JSON.parse(check_order(order).body)['data']['confirmationId']
+      confirm_order(order, confirmation_id)
+    end
+
+    def create_limit_sell_order(product_id:, size:, price:)
+      order = limit_order(BUY_SELL[:sell], product_id, size, price)
+      confirmation_id = JSON.parse(check_order(order).body)['data']['confirmationId']
       confirm_order(order, confirmation_id)
     end
 
     private
 
-    def order(type, product_id, size, price)
+    def market_order(type, product_id, size)
       {
-        buysell:   type,
+        buySell:   type,
+        orderType: ORDER_TYPES[:market],
+        productId: product_id,
+        size:      size,
+        timeType:  TIME_TYPES[:permanent]
+      }
+    end
+
+    def limit_order(type, product_id, size, price)
+      {
+        buySell:   type,
         orderType: ORDER_TYPES[:limited],
         productId: product_id,
         size:      size,

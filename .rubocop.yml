@@ -3,7 +3,7 @@ AllCops:
     - bin/*
 
 Metrics/LineLength:
-  Max: 120
+  Max: 130
 
 Metrics/MethodLength:
   Max: 30
