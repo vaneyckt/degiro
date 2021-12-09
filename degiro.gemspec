@@ -15,8 +15,8 @@ Gem::Specification.new do |spec|
   spec.files         = Dir.glob('lib/**/*.rb')
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'faraday', '~> 0.13.1'
-  spec.add_dependency 'faraday-cookie_jar', '~> 0.0.6'
+  spec.add_dependency 'faraday', '> 0.14.0'
+  spec.add_dependency 'faraday-cookie_jar', '> 0.0.6'
 
   spec.add_development_dependency 'rubocop', '~> 0.51.0'
 end
